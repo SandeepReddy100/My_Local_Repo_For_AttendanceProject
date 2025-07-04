@@ -124,6 +124,7 @@
 
   <script>
     const batchSelected = (localStorage.getItem('selectedbatch') || '').toUpperCase();
+    console.log(batchSelected);
     const todayKey = new Date().toISOString().split('T')[0];
 
     // Load stored attendance or initialize

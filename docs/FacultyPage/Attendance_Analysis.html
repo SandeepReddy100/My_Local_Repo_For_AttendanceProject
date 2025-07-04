@@ -124,6 +124,8 @@
 
   <script>
     const batchSelected = (localStorage.getItem('selectedbatch') || '').toUpperCase();
+    console.log("hi");
+    
     console.log(batchSelected);
     const todayKey = new Date().toISOString().split('T')[0];
 
@@ -146,11 +148,14 @@
       { name: "Group J", present: 46, absent: 10 }
     ];
 
-    const selectedGroup = allGroups.find(group => group.name === batchSelected);
-    if (selectedGroup && !storedAttendance[todayKey].some(g => g.name === selectedGroup.name)) {
-      storedAttendance[todayKey].push(selectedGroup);
-      localStorage.setItem('attendanceData', JSON.stringify(storedAttendance));
-    }
+//    const batchSelected = (localStorage.getItem('selectedbatch') || '').toUpperCase();
+
+const selectedGroup = allGroups.find(group => group.name.toUpperCase() === batchSelected);
+if (selectedGroup && !storedAttendance[todayKey].some(g => g.name.toUpperCase() === selectedGroup.name.toUpperCase())) {
+  storedAttendance[todayKey].push(selectedGroup);
+  localStorage.setItem('attendanceData', JSON.stringify(storedAttendance));
+}
+
 
     const dataToDisplay = storedAttendance[todayKey];
 

@@ -155,6 +155,7 @@ if (selectedGroup && !storedAttendance[todayKey].some(g => g.name.toUpperCase() 
   storedAttendance[todayKey].push(selectedGroup);
   localStorage.setItem('attendanceData', JSON.stringify(storedAttendance));
 }
+console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 
 console.log("Batch selected:", batchSelected);
 console.log("Matching group:", selectedGroup);

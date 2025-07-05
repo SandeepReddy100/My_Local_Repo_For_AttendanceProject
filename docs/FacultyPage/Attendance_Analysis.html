@@ -132,8 +132,9 @@
     // Load stored attendance or initialize
     let storedAttendance = JSON.parse(localStorage.getItem('attendanceData')) || {};
     if (!storedAttendance[todayKey]) {
-      storedAttendance = { [todayKey]: [] };
-    }
+  storedAttendance[todayKey] = [];
+}
+
 
     const allGroups = [
       { name: "SKILLUP-1", present: 45, absent: 5 },

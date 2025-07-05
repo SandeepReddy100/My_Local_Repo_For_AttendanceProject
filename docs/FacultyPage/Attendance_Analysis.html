@@ -123,19 +123,6 @@
   </table>
 
   <script>
-    const batchSelected = JSON.parse((localStorage.getItem('selectedbatch') || '').toUpperCase());
-    
-    console.log(batchSelected);
-    console.log("hi");
-    const todayKey = new Date().toISOString().split('T')[0];
-
-    // Load stored attendance or initialize
-    let storedAttendance = JSON.parse(localStorage.getItem('attendanceData')) || {};
-    if (!storedAttendance[todayKey]) {
-  storedAttendance[todayKey] = [];
-}
-
-
     const allGroups = [
       { name: "SKILLUP-1", present: 45, absent: 5 },
       { name: "SKILLUP-2", present: 50, absent: 10 },
@@ -149,20 +136,30 @@
       { name: "SKILLBRIDGE-5", present: 46, absent: 10 }
     ];
 
-//    const batchSelected = (localStorage.getItem('selectedbatch') || '').toUpperCase();
+    const todayKey = new Date().toISOString().split('T')[0]; // e.g., "2025-07-05"
+    let storedAttendance = JSON.parse(localStorage.getItem('attendanceData')) || {};
 
-const selectedGroup = allGroups.find(group => group.name.toUpperCase() === batchSelected);
-if (selectedGroup && !storedAttendance[todayKey].some(g => g.name.toUpperCase() === selectedGroup.name.toUpperCase())) {
-  storedAttendance[todayKey].push(selectedGroup);
-  localStorage.setItem('attendanceData', JSON.stringify(storedAttendance));
-}
-console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+    // Clear old data if not from today
+    if (!storedAttendance[todayKey]) {
+      storedAttendance = { [todayKey]: [] };
+    }
 
-console.log("Batch selected:", batchSelected);
-console.log("Matching group:", selectedGroup);
+    // Read selected batch from localStorage
+    const batchSelected = (localStorage.getItem('selectedbatch') || '').replace(/"/g, '').toUpperCase();
+
+    // Find the selected group
+    const selectedGroup = allGroups.find(group => group.name.toUpperCase() === batchSelected);
+
+    // Check if group is already added for today
+    if (selectedGroup &&
+      !storedAttendance[todayKey].some(g => g.name.toUpperCase() === selectedGroup.name.toUpperCase())) {
+      storedAttendance[todayKey].push(selectedGroup);
+      localStorage.setItem('attendanceData', JSON.stringify(storedAttendance));
+    }
 
     const dataToDisplay = storedAttendance[todayKey];
 
+    // Prepare data for the chart
     const labels = dataToDisplay.map(g => g.name);
     const presentData = dataToDisplay.map(g => g.present);
     const absentData = dataToDisplay.map(g => g.absent);
@@ -219,6 +216,7 @@ console.log("Matching group:", selectedGroup);
       }
     });
 
+    // Fill the table
     const tableBody = document.querySelector("#attendanceTable tbody");
     let totalPresent = 0, totalAbsent = 0;
 

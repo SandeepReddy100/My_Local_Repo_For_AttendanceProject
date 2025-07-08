@@ -15,12 +15,12 @@
     "express": "^5.1.0",
     "mongoose": "^8.15.0",
     "multer": "^2.0.0",
-    "nodemon": "^3.1.10",
     "qr-attendance-system": "file:",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "nodemon": "^3.1.10",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.7"
   },

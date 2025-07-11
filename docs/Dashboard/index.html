@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard</title>
+  <link rel="shortcut icon" href="./images/logo.png" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  
+</head>
+
+<body>
+  <header>
+    <div class="logo" title="University Management System">
+      <img src="IARE-LOGO.png" alt="" />
+      <h1>IARE</h1>
+    </div>
+    <div class="navbar">
+      <a href="index.html" class="active">
+        <span class="material-icons-sharp">home</span>
+        <h3>Home</h3>
+      </a>
+      <!-- <a href="timetable.html" onclick="timeTableAll()">
+          <span class="material-icons-sharp">today</span>
+          <h3>Time Table</h3>
+        </a> -->
+      <a href="password.html">
+        <span class="material-icons-sharp">password</span>
+        <h3>Change Password</h3>
+      </a>
+      <div id="profile-btn">
+        <span class="material-icons-sharp">person</span>
+      </div>
+      <a href="#">
+        <span class="material-icons-sharp" onclick="logout()">logout</span>
+        <h3 onclick="logout()">Logout</h3>
+      </a>
+    </div>
+  </header>
+  <div class="container">
+    <aside>
+      <div class="profile">
+        <div class="top">
+          <!-- Optional profile photo here -->
+          <h2>Student Profile</h2>
+        </div>
+        <div class="about">
+          <h5>
+            <span class="material-icons-sharp">person_outline</span> NAME
+          </h5>
+          <p id="profileName"></p>
+
+          <h5>
+            <span class="material-icons-sharp">confirmation_number</span> ROLL
+            NO
+          </h5>
+          <p id="profileRollNo"></p>
+
+          <h5><span class="material-icons-sharp">computer</span> BRANCH</h5>
+          <p id="profileBranch"></p>
+
+          <h5><span class="material-icons-sharp">groups</span> BATCH</h5>
+          <p id="profileBatch"></p>
+
+          <h5><span class="material-icons-sharp">email</span> EMAIL</h5>
+          <p id="profileEmail"></p>
+        </div>
+      </div>
+    </aside>
+
+
+    <main class="main-container">
+      <div class="container1 responsive-layout">
+        <div class="attendance-section">
+          <h1>Attendance</h1>
+          <div class="subjects" id="attendanceCardsContainer">
+            <!-- Cards will be generated here dynamically -->
+          </div>
+        </div>
+
+
+        <!-- card section -->
+        <div class="right-section">
+          <h1 class="digital-card-heading">Digital Card</h1>
+          <div class="qr-card">
+            <div class="qr-card-header">
+              <div class="qr-card-text">
+                <h3 id="cardRoll">ROLL_NO</h3>
+                <p id="cardBatch">Batch: BATCH</p>
+              </div>
+              <div class="qr-card-photo">
+                <img id="cardPhoto" src="" alt="Profile Photo" />
+              </div>
+            </div>
+            <div class="qr-card-body">
+              <img id="qrImage" alt="QR Code" />
+              <p id="qrTimestamp">Generated at: --/--/---- --:--:--</p>
+            </div>
+            <div class="qr-card-footer">Powered by IARE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container2">
+        <section class="today-timetable">
+          <h2><span class="material-icons-sharp">event</span> Today's Timetable</h2>
+          <div class="periods" id="timetableContainer">
+            <!-- Dynamic periods will be injected here -->
+          </div>
+        </section>
+      </div>
+    </main>
+    <!-- Spinner Overlay -->
+    <div id="spinner-overlay" style="
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+">
+      <div class="spinner"></div>
+    </div>
+
+  </div>
+  </footer>
+  <script src="app.js"></script>
+  <script src="timeTable.js"></script>
+ 
+
+</body>
+
+</html>
